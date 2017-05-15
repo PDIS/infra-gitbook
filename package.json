@@ -1,0 +1,14 @@
+{
+  "name": "infra",
+  "version": "1.0.0",
+  "description": "fetch infra qa from discourse to hackmd",
+  "main": "index.js",
+  "author": "Mark Dai",
+  "license": "MIT",
+  "dependencies": {
+    "discourse": "^0.1.0",
+    "discourse-api": "^1.8.0",
+    "phantom": "^4.0.3",
+    "request-promise": "^4.2.1"
+  }
+}
