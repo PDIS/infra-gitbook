@@ -1,6 +1,6 @@
 const request = require('request-promise');
 const natsort = require('natsort');
-const config = require('./config.json')
+const config = require('./talk2md_config.json')
 const fs = require('fs')
 const api_key = ""
 const api_username = ""
@@ -59,10 +59,20 @@ async function createSummary(sub_categories) {
 
     console.log("CREATE SUMMARY.MD")
     summary = "# Summary\n\n"
+    summary += "* [簡介](README.md)\n"
     for (category of sub_categories) {
         summary += "* [" + category.name + "](" + category.name + ".md)\n"
     }
-    fs.writeFileSync("SUMMARY.md", summary)
+    fs.writeFileSync("infra/SUMMARY.md", summary)
+
+}
+
+async function createIntroduction(intro_topic_id) {
+
+    console.log("CREATE README.MD")
+    res = await request.get("https://talk.pdis.nat.gov.tw/t/" + intro_topic_id + ".json?include_raw=1&" + auth_url)
+    content = JSON.parse(res).post_stream.posts[0].raw
+    fs.writeFileSync("infra/README.md", content)
 
 }
 
@@ -72,10 +82,12 @@ async function createSummary(sub_categories) {
 
     createSummary(sub_categories)
 
+    createIntroduction(config.IntroductionID)
+
     for (category of sub_categories) {
         console.log("\n===================================================\n")
-        content = await getMergedContentFromTalk("121/" + category.id)
-        fs.writeFileSync(category.name + '.md', content)
+        content = await getMergedContentFromTalk(config.RootCategoryID + "/" + category.id)
+        fs.writeFileSync('infra/' + category.name + '.md', content)
         console.log(category.name + '.md OK!!')
     }
 
