@@ -58,11 +58,15 @@ async function getSubCategoriesFromRoot(root_category_id) {
 async function createSummary(sub_categories) {
 
     console.log("CREATE SUMMARY.MD")
+
+    // TOC
     summary = "# Summary\n\n"
+    summary += "### " + config.BookTitle + "\n\n"
     summary += "* [簡介](README.md)\n"
     for (category of sub_categories) {
         summary += "* [" + category.name + "](" + category.name + ".md)\n"
     }
+
     fs.writeFileSync("infra/SUMMARY.md", summary)
 
 }
@@ -76,6 +80,16 @@ async function createIntroduction(intro_topic_id) {
 
 }
 
+async function appendFAQ(FAQ_topic_id) {
+
+    console.log("APPEND FAQ TO SUMMARY")
+    res = await request.get("https://talk.pdis.nat.gov.tw/t/" + FAQ_topic_id + ".json?include_raw=1&" + auth_url)
+    content = "\n\n### 常見問答\n\n"
+    content += JSON.parse(res).post_stream.posts[0].raw
+    fs.appendFileSync("infra/SUMMARY.md", content)
+
+}
+
 (async function() {
 
     sub_categories = await getSubCategoriesFromRoot(121)
@@ -83,6 +97,8 @@ async function createIntroduction(intro_topic_id) {
     createSummary(sub_categories)
 
     createIntroduction(config.IntroductionID)
+
+    appendFAQ(config.FAQID)
 
     for (category of sub_categories) {
         console.log("\n===================================================\n")
