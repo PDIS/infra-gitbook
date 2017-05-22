@@ -83,7 +83,7 @@ async function appendFAQ(FAQ_topic_id) {
 
     console.log("APPEND FAQ TO SUMMARY")
     res = await request.get("https://talk.pdis.nat.gov.tw/t/" + FAQ_topic_id + ".json?include_raw=1&" + auth_url)
-    content = "\n\n### 常見問答\n\n"
+    content = "\n\n### 快速連結\n\n"
     content += JSON.parse(res).post_stream.posts[0].raw
     fs.appendFileSync("infra/SUMMARY.md", content)
 
