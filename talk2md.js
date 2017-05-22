@@ -61,8 +61,7 @@ async function createSummary(sub_categories) {
 
     // TOC
     summary = "# Summary\n\n"
-    summary += "### " + config.BookTitle + "\n\n"
-    summary += "* [簡介](README.md)\n"
+    summary += "* [" + config.BookTitle + "](README.md)\n"
     for (category of sub_categories) {
         summary += "* [" + category.name + "](" + category.name + ".md)\n"
     }
