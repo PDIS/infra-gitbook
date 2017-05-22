@@ -2,8 +2,8 @@ const request = require('request-promise');
 const natsort = require('natsort');
 const config = require('./talk2md_config.json')
 const fs = require('fs')
-const api_key = ""
-const api_username = ""
+const api_key = process.env.api_key
+const api_username = process.env.api_username
 const auth_url = "api_key=" + api_key + "&api_username=" + api_username
 
 var sorter = natsort();
@@ -87,6 +87,7 @@ async function createIntroduction(intro_topic_id) {
     for (category of sub_categories) {
         console.log("\n===================================================\n")
         content = await getMergedContentFromTalk(config.RootCategoryID + "/" + category.id)
+        content = "# " + category.name + "\n\n" + content
         fs.writeFileSync('infra/' + category.name + '.md', content)
         console.log(category.name + '.md OK!!')
     }
