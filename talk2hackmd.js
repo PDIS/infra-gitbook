@@ -8,7 +8,7 @@ const auth_url = "api_key=" + api_key + "&api_username=" + api_username
 const phantom = require('phantom');
 const request = require('request-promise');
 const natsort = require('natsort');
-const config = require('./config.json')
+const config = require('./talk2hackmd_config.json')
 var page;
 var instance;
 var sorter = natsort();
