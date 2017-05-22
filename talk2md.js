@@ -87,7 +87,10 @@ async function createIntroduction(intro_topic_id) {
     for (category of sub_categories) {
         console.log("\n===================================================\n")
         content = await getMergedContentFromTalk(config.RootCategoryID + "/" + category.id)
-        content = "# " + category.name + "\n\n" + content
+        content =
+            "# " + category.name + "\n\n" +
+            "-----\n\n" +
+            content
         fs.writeFileSync('infra/' + category.name + '.md', content)
         console.log(category.name + '.md OK!!')
     }
