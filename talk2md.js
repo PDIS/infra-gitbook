@@ -26,7 +26,7 @@ async function getMergedContentFromTalk(category_id) {
     while (topics.length > 0);
 
     for (let topic of all_topics) {
-        if (topic.title.indexOf('對於分類：') < 0) {
+        if (topic.title.indexOf('對於分類：') < 0 && topic.tags.indexOf("public-") > -1) {
             res = await request.get("https://talk.pdis.nat.gov.tw/t/" + topic.id + ".json?include_raw=1&" + auth_url)
             post = JSON.parse(res).post_stream.posts[0]
             all_QA.push({ 'q': topic.title, 'a': post.raw })
