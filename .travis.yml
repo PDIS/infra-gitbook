@@ -8,10 +8,23 @@ before_script:
 - npm install -g gitbook-cli
 - npm install
 script:
+# generate md files
 - mkdir infra
 - node talk2md
+# generate gitbook & build
 - mkdir infra-book
 - cd infra-book
 - gitbook init
 - cp ../infra/*.md .
 - gitbook build
+# upload to github 
+- git config --global user.email "$GIT_EMAIL"
+- git config --global user.name "$GIT_NAME"
+- git config --global push.default simple
+- git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/pdis/infra-gitbook
+- cp -R _book/* infra-gitbook/
+- cd infra-gitbook/
+- git add -A .
+- MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
+- git commit -m "Book updated:$MESSAGE"
+- git push --quiet
