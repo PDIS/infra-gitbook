@@ -16,7 +16,6 @@ script:
 - cd infra-book
 - gitbook init
 - cp ../book.json .
-- gitbook install
 - cp ../infra/*.md .
 - gitbook install
 - gitbook build
@@ -27,6 +26,7 @@ script:
 - git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/pdis/infra-gitbook
 - cp -R _book/* infra-gitbook/
 - cd infra-gitbook/
+- echo "infra.pdis.tw" > CNAME
 - git add -A .
 - MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
 - git commit -m "Book updated:$MESSAGE"
