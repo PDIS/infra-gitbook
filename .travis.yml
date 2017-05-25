@@ -1,0 +1,34 @@
+language: node_js
+node_js:
+- '7'
+
+env:
+  global:
+    secure: WAV7bqBLaPL3i5/5HtZTc5DB29N4AO9Dry5CvOxwAFQuQ2xriGLeRhBFqlCvYqvtIs9RwjFQLtfd4+5si530BS/H+ut87TQ4/qC/nBEI1XeMUGhyIqdQbpGwG+sT4SgWA3o+8kMppE9W1VwLJuyHD6wKwyvuUyrBU+uRpeeorP7plG8iPNFLVfX73mXBt7OFns3ASJL6O83uDc36bGHDnk4qJjlIYqnGU27Grn/1QED2ILZ4yYgSwCV0kqL80aJMNt2VMjL0Cy4cXaPDQdj7+J+r1tVQoepuTf+xF//PQAgQBvgmuL9bT7HshQpA5+R1Txp/xxDLvXw11xC+SYnwHv+JbmNiibwmuaRrhVQidN/W2v0SCJxpCYP0eH4uY1oQOzgBHTj5DNwff/KHI1J7ZZZ6Xc925XdfAJT1IqHSFrFRGWrZyxAwPI89qcEhAm1Qof7DqIUgWhjyD6AOD/v5w93PDLSNnyaNt6YhqFY+GV0zats3PO17u8ezbSXa5waR8qtHxa7+U27aO4Dn/6tb61OumlZfB9DM4AFOSb4AfAOMVz79YVVifQvBp5Z59kxeOFlpHs+DUS0kClhh3XF+4ZDzConGOcduqp7TbtS4bepqn+z+E/WrNhoUzMJbLxljlfZ8G3pkmmErloMTzu5EeCuoM3ku7sQy2ho8NVVZbZ8=
+
+before_script:
+  - npm install -g gitbook-cli
+  - npm install
+
+script:
+# generate markdown files
+- mkdir infra
+- node talk2md
+# generate gitbook
+- mkdir infra-book
+- cd infra-book
+- gitbook init
+- cp ../infra/*.md .
+- gitbook build
+
+# - git config --global user.name "$GIT_NAME"
+# - git config --global user.email "$GIT_EMAIL"
+# - git config --global push.default simple
+# - git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/ssk7833/blog
+#   public
+# - npm run generate
+# - cd public
+# - git add -A .
+# - MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
+# - git commit -m "Site updated:$MESSAGE"
+# - git push --quiet
