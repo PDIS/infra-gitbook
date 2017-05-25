@@ -15,6 +15,9 @@ script:
 - mkdir infra-book
 - cd infra-book
 - gitbook init
+- cp ../book.json .
+- npm install gitbook-plugin-anchors
+- npm install gitbook-plugin-search-pro
 - cp ../infra/*.md .
 - gitbook build
 # upload to github 
