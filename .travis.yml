@@ -16,9 +16,9 @@ script:
 - cd infra-book
 - gitbook init
 - cp ../book.json .
-- npm install gitbook-plugin-anchors
-- npm install gitbook-plugin-search-pro
+- gitbook install
 - cp ../infra/*.md .
+- gitbook install
 - gitbook build
 # upload to github 
 - git config --global user.email "$GIT_EMAIL"
