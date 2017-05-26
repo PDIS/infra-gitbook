@@ -1,1 +1,8 @@
-{ "plugins": ["-lunr", "-search", "search-pro", "anchors"] }
+{
+    "plugins": ["-lunr", "-search", "search-pro", "anchors", "ga"],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-88737935-2"
+        }
+    }
+}
