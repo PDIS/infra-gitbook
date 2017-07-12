@@ -20,9 +20,9 @@ script:
 
 # -------------------------------
 # workaround for gitbook bug
-- cd ~/.gitbook/versions/3.2.2/
+- cd /home/travis/.gitbook/versions/3.2.2
 - npm i
-- cd ~/infra-gitbook/infra-book
+- cd /home/travis/build/PDIS/infra-gitbook/infra-book
 # -------------------------------
 
 - ../node_modules/.bin/gitbook init
