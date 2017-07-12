@@ -6,9 +6,10 @@
     "author": "Mark Dai",
     "license": "MIT",
     "dependencies": {
+        "gitbook": "^3.2.2",
+        "gitbook-cli": "^2.3.1",
         "natsort": "^1.0.6",
         "phantom": "^4.0.3",
-        "request-promise": "^4.2.1",
-        "gitbook": "^3.2.2"
+        "request-promise": "^4.2.1"
     }
 }
