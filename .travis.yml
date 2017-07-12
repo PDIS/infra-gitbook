@@ -16,7 +16,14 @@ script:
 # generate gitbook & build
 - mkdir infra-book
 - cd infra-book
-- ../node_modules/.bin/gitbook -V
+
+# -------------------------------
+# workaround for gitbook bug
+- cd ~/.gitbook/versions/3.2.2/
+- npm i
+- cd ~/infra-gitbook/infra-book
+# -------------------------------
+
 - ../node_modules/.bin/gitbook init
 - cp ../book.json .
 - cp ../infra/*.md .
