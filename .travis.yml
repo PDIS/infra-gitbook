@@ -10,6 +10,7 @@ before_script:
 #- npm install -g extend
 #- npm install
 script:
+- pwd
 # generate md files
 - mkdir infra
 - node talk2md
