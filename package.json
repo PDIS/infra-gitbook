@@ -9,5 +9,6 @@
         "natsort": "^1.0.6",
         "phantom": "^4.0.3",
         "request-promise": "^4.2.1"
+        "gitbook": "^3.2.2"
     }
 }
