@@ -15,6 +15,7 @@ script:
 # generate gitbook & build
 - mkdir infra-book
 - cd infra-book
+- gitbook -V
 - gitbook init
 - cp ../book.json .
 - cp ../infra/*.md .
